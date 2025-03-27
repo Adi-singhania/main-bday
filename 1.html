@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Mannat | March 28, 2025</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fce4ec, #f8bbd0);
+            color: #d81b60;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        header {
+            text-align: center;
+            padding: 50px 0;
+            position: relative;
+        }
+
+        h1 {
+            font-size: 4.5em;
+            color: #ff80ab;
+            text-shadow: 0 0 15px rgba(255, 128, 171, 0.7);
+            animation: glow 2s infinite alternate;
+        }
+
+        h1 span {
+            font-family: 'Dancing Script', cursive;
+            color: #f06292;
+        }
+
+        section {
+            padding: 60px 20px;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #welcome {
+            position: relative;
+        }
+
+        #welcome p {
+            font-size: 1.5em;
+            max-width: 700px;
+            animation: fadeIn 2s forwards;
+            color: #c2185b;
+        }
+
+        .welcome-image {
+            margin: 30px 0;
+            max-width: 300px;
+            width: 100%;
+            opacity: 0.7;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(244, 143, 177, 0.5);
+        }
+
+        #gallery {
+            position: relative;
+        }
+
+        .gallery-hint {
+            font-size: 0.9em;
+            color: #f06292;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            opacity: 0.8;
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .photo-card {
+            perspective: 1000px;
+            width: 150px;
+            height: 150px;
+            animation: pulse 3s infinite;
+        }
+
+        .photo-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+        }
+
+        .photo-card:hover .photo-inner {
+            transform: rotateY(180deg);
+        }
+
+        .photo-front, .photo-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(244, 143, 177, 0.5);
+        }
+
+        .photo-front img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 15px;
+            border: 3px solid #ffccbc;
+        }
+
+        .photo-back {
+            background: #f48fb1;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+            transform: rotateY(180deg);
+        }
+
+        #spin-wheel {
+            position: relative;
+        }
+
+        .wheel-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+        }
+
+        .wheel-message-title {
+            font-size: 2em;
+            color: #ff4081;
+            font-family: 'Dancing Script', cursive;
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px rgba(255, 64, 129, 0.5);
+        }
+
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: conic-gradient(
+                #ff80ab 0deg 60deg, #f06292 60deg 120deg,
+                #ff4081 120deg 180deg, #f48fb1 180deg 240deg,
+                #ffccbc 240deg 300deg, #f8bbd0 300deg 360deg
+            );
+            position: relative;
+            transition: transform 3s ease-out;
+            cursor: pointer;
+            box-shadow: 0 10px 20px rgba(240, 98, 146, 0.6);
+        }
+
+        .wheel:hover {
+            transform: scale(1.05);
+        }
+
+        .pointer {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 20px;
+            height: 20px;
+            background: #ff1744;
+            clip-path: polygon(50% 100%, 0 0, 100% 0);
+            z-index: 1;
+        }
+
+        .wheel-message {
+            margin-top: 20px;
+            font-size: 1.5em;
+            color: #ff4081;
+            opacity: 0;
+            transition: opacity 0.5s;
+        }
+
+        .wheel-message.show {
+            opacity: 1;
+        }
+
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .heart {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: #ff9999;
+            clip-path: path('M5 10 C2 7, 0 4, 0 2 A3 3 0 0 1 5 0 A3 3 0 0 1 10 2 C10 4, 8 7, 5 10');
+            animation: rain 5s linear infinite;
+        }
+
+        /* Pulse Animation for Photos */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                box-shadow: 0 5px 15px rgba(244, 143, 177, 0.5);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 5px 20px rgba(244, 143, 177, 0.8);
+            }
+            100% {
+                transform: scale(1);
+                box-shadow: 0 5px 15px rgba(244, 143, 177, 0.5);
+            }
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px #ff80ab; }
+            100% { text-shadow: 0 0 20px #ff80ab; }
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        @keyframes rain {
+            0% {
+                transform: translateY(-100px);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateY(100vh);
+                opacity: 0.3;
+            }
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 3em; }
+            #welcome p { font-size: 1.2em; }
+            .welcome-image { max-width: 200px; }
+            .photo-card { width: 120px; height: 120px; }
+            .wheel-container { width: 250px; height: 250px; }
+            .wheel-message { font-size: 1.2em; }
+            .wheel-message-title { font-size: 1.5em; }
+            .gallery-hint { font-size: 0.8em; }
+        }
+
+        /* Audio Controls Styling */
+        .audio-controls {
+            margin-bottom: 20px;
+            z-index: 1000;
+        }
+
+        .audio-controls button {
+            padding: 5px 15px;
+            background: #ff80ab;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .audio-controls button:hover {
+            background: #f06292;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+</head>
+<body>
+    <!-- Audio Element -->
+    <audio id="birthday-tune" src="birthday-tune.mp3" preload="auto"></audio>
+
+    <div class="hearts"></div>
+
+    <header>
+        <!-- Audio Controls in Top Center -->
+        <div class="audio-controls">
+            <button onclick="playAudio()">Play Birthday Tune 🎵</button>
+        </div>
+        <h1>Happy Birthday <span>Mannat</span>! 🎀</h1>
+    </header>
+
+    <section id="welcome">
+        <img src="p1.jpg" alt="Mannat" class="welcome-image">
+        <p id="welcome-message" style="opacity: 0;"></p>
+    </section>
+
+    <section id="gallery">
+        <h2>Your Lovely Moments</h2>
+        <div class="gallery-hint">More moments to see! 📸 | Discover a surprise! ✨</div>
+        <div class="photo-grid">
+            <div class="photo-card">
+                <div class="photo-inner">
+                    <div class="photo-front"><img src="1.jpg" alt="Mannat 1" onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=Photo+1'; console.error('Failed to load image: 1.jpg')"></div>
+                    <div class="photo-back">Perfect!</div>
+                </div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-inner">
+                    <div class="photo-front"><img src="2.jpg" alt="Mannat 2" onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=Photo+2'; console.error('Failed to load image: 2.jpg')"></div>
+                    <div class="photo-back">Gorgeous!</div>
+                </div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-inner">
+                    <div class="photo-front"><img src="3.jpg" alt="Mannat 3" onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=Photo+3'; console.error('Failed to load image: 3.jpg')"></div>
+                    <div class="photo-back">So Cute!</div>
+                </div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-inner">
+                    <div class="photo-front"><img src="4.jpg" alt="Mannat 4" onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=Photo+4'; console.error('Failed to load image: 4.jpg')"></div>
+                    <div class="photo-back">Pure Joy!</div>
+                </div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-inner">
+                    <div class="photo-front"><img src="6.jpg" alt="Mannat 5" onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=Photo+5'; console.error('Failed to load image: 6.jpg')"></div>
+                    <div class="photo-back">Amazing!</div>
+                </div>
+            </div>
+            <div class="photo-card">
+                <div class="photo-inner">
+                    <div class="photo-front"><img src="7.jpg" alt="Mannat 6" onerror="this.onerror=null; this.src='https://via.placeholder.com/150?text=Photo+6'; console.error('Failed to load image: 7.jpg')"></div>
+                    <div class="photo-back">Shining Star!</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="spin-wheel">
+        <div class="wheel-message-title">Spin the Wheel for a Sweet Surprise! 🎀</div>
+        <div class="wheel-container">
+            <div class="pointer"></div>
+            <div class="wheel" onclick="spinWheel()"></div>
+        </div>
+        <div class="wheel-message" id="wheel-result"></div>
+    </section>
+
+    <script>
+        const messageText = "Dear Mannat, today is all about you! Wishing you a day full of magic, love, and joy. You’re a gift to the world, and I hope this birthday brings you everything you dream of. Let’s celebrate you! 🎉";
+        let i = 0;
+        function typeWriter() {
+            if (i < messageText.length) {
+                document.getElementById("welcome-message").innerHTML += messageText.charAt(i);
+                i++;
+                setTimeout(typeWriter, 50);
+            }
+        }
+
+        function createHearts() {
+            const heartsContainer = document.querySelector(".hearts");
+            for (let i = 0; i < 100; i++) {
+                const heart = document.createElement("div");
+                heart.className = "heart";
+                heart.style.left = Math.random() * 100 + "%";
+                heart.style.animationDelay = Math.random() * 5 + "s";
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        const wishes = [
+            "Mannat, you’re the coolest birthday girl ever!",
+            "Here’s to a day as awesome as your smile!",
+            "Hope your birthday’s as fun as you are!",
+            "You make every day brighter—happy birthday!",
+            "Wishing you a blast of a birthday, Mannat!",
+            "You’re the star of the day—shine on!"
+        ];
+
+        let isSpinning = false;
+        function spinWheel() {
+            if (isSpinning) return;
+            isSpinning = true;
+
+            const wheel = document.querySelector(".wheel");
+            const result = document.getElementById("wheel-result");
+            const randomDeg = Math.floor(Math.random() * 3600) + 720;
+
+            wheel.style.transform = `rotate(${randomDeg}deg)`;
+            result.classList.remove("show");
+            result.textContent = "";
+
+            setTimeout(() => {
+                const finalAngle = randomDeg % 360;
+                const segment = Math.floor(finalAngle / 60);
+                result.textContent = wishes[segment];
+                result.classList.add("show");
+                isSpinning = false;
+            }, 3000);
+        }
+
+        // Audio Playback Function
+        function playAudio() {
+            const audio = document.getElementById("birthday-tune");
+            audio.play().catch(error => {
+                console.error("Autoplay blocked:", error);
+            });
+        }
+
+        // Confetti Animation
+        function launchConfetti() {
+            confetti({
+                particleCount: 100,
+                spread: 70,
+                origin: { y: 0.6 },
+                colors: ['#ff80ab', '#f06292', '#ff4081', '#f48fb1']
+            });
+        }
+
+        window.onload = () => {
+            createHearts();
+            typeWriter();
+            playAudio();
+            launchConfetti();
+        };
+    </script>
+</body>
+</html>
